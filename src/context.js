@@ -6,7 +6,7 @@ export const RoomContext = React.createContext();
 export class RoomProvider extends Component {
   state = {
     rooms: [],
-    sorted: [],
+    sortedRooms: [],
     featuredRooms: [],
     loading: true,
   };
@@ -19,7 +19,7 @@ export class RoomProvider extends Component {
     this.setState({
       rooms,
       featuredRooms,
-      sorted: rooms,
+      sortedRooms: rooms,
       loading: false,
     });
   }
@@ -51,3 +51,13 @@ export class RoomProvider extends Component {
 }
 
 export const RoomConsumer = RoomContext.Consumer;
+
+export function withRoomConsumer(Component) {
+  return function ConsumerWrapper(props) {
+    return (
+      <RoomConsumer>
+        {(value) => <Component {...props} context={value} />}
+      </RoomConsumer>
+    );
+  };
+}
