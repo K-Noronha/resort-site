@@ -10,7 +10,7 @@ export class RoomProvider extends Component {
     sortedRooms: [],
     featuredRooms: [],
     loading: true,
-    //filter properties
+    // default filter properties
     type: "all",
     capacity: 1,
     price: 0,
@@ -49,6 +49,7 @@ export class RoomProvider extends Component {
   componentDidMount() {
     this.getData();
   }
+
   formatData(items) {
     let tempItems = items.map((item) => {
       let id = item.sys.id;
